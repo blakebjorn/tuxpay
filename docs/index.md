@@ -7,10 +7,10 @@ TuxPay utilizes the existing network of public ElectrumX servers - this allows y
 multiple coins without requiring your own full nodes or relying on a custodial service. For those with more business
 critical requirements you can also point your payment server at your own private or trusted ElectrumX servers.
 
-#### [Installation Guide](/installation)
+#### [Installation Guide](/tuxpay/installation)
 
-#### [Usage Guide](/usage)
+#### [Usage Guide](/tuxpay/usage)
 
-#### [Integration Guide](/integration)
+#### [Integration Guide](/tuxpay/integration)
 
-#### [API Documentation](/redoc.html)
+#### [API Documentation](/tuxpay/redoc.html)

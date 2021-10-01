@@ -1,7 +1,7 @@
 # Integration
 
 Much of the information on this page will need to be supplemented with that found on
-the [API documentation page](/redoc.html)
+the [API documentation page](/tuxpay/redoc.html)
 
 While not strictly necessary, there is a javascript SDK bundled with the payment server. The SDK is served via
 the `/tuxpay.js` endpoint.
