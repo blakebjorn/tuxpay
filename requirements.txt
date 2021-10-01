@@ -4,6 +4,7 @@ python-dotenv==0.18.0
 requests==2.25.1
 PyInquirer==1.0.3
 mnemonic==0.19
+mkdocs==1.2.2
 qrcode[pil]==7.0
 uvicorn[standard]==0.14.0
 apscheduler==3.7.0

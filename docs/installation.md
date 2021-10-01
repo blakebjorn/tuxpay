@@ -45,12 +45,20 @@ change/overwrite the existing config)
 python3 setup.py
 ```
 
+Edit the configuration as you see fit. see `data/config.examples.ini` for more information on the configuration
+
+```
+cp data/config.default.ini data/config.ini
+nano data/config.ini  # or your preferred text editor
+```
+
 To set up the system service you will first need to edit `tuxpay.service` and fill out the templated fields with the
 path of the install location. The specified user needs to have read access of the directory (and write access to at
 least the `data` folder), so permissions will need to be set appropriately, or the `user` will need to be changed.
 
 ```
-cp tuxpay.service /etc/systemd/system/opennodes.service
+cp tuxpay.service /etc/systemd/system/tuxpay.service
+sudo systemctl daemon-reload
 sudo service tuxpay enable && sudo service tuxpay start
 ```
 

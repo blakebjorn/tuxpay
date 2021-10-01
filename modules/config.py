@@ -37,7 +37,7 @@ def get(key, default=None, namespace='global', coin=None, prefer_coin=None):
 
 def check(key, namespace='global', coin=None):
     return get(key, default="", coin=coin,
-               namespace=namespace if coin is None else None).upper().strip() in ("1", "TRUE", "YES", "T", "F")
+               namespace=namespace if coin is None else None).upper().strip() in ("1", "TRUE", "YES", "T")
 
 
 def to_dict():
