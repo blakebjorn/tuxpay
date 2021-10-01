@@ -1,0 +1,83 @@
+{
+  "BTC": [
+    "E-X.not.fyi|50001|50002",
+    "VPS.hsmiths.com|50001|50002",
+    "b.ooze.cc|50001|50002",
+    "bitcoin3nqy3db7c.onion|50001|50002",
+    "btc.cihar.com|50001|50002",
+    "e.keff.org|50001|50002",
+    "electrum.hsmiths.com|50001|50002",
+    "electrum.qtornado.com|50001|50002",
+    "hsmiths5mjk6uijs.onion|50001|50002",
+    "electrum.emzy.de|50001|50002",
+    "ozahtqwp25chjdjd.onion|50001|50002",
+    "tardis.bauerj.eu|50001|50002",
+    "wsw6tua3xl24gsmi264zaep6seppjyrkyucpsmuxnjzyt3f3j6swshad.onion|50001|50002",
+    "ecdsa.net|50001|110",
+    "e2.keff.org|50001|50002",
+    "electrum.hodlister.co||50002",
+    "electrum3.hodlister.co||50002",
+    "electrum5.hodlister.co||50002",
+    "electrumx.electricnewyear.net||50002",
+    "electrumx.erbium.eu|50001|50002",
+    "bitcoin.aranguren.org|50001|50002",
+    "bitcoin.lukechilds.co|50001|50002",
+    "electrum.bitkoins.nl|50001|50512",
+    "electrum.blockstream.info|50001|50002"
+  ],
+  "tBTC": [
+    "hsmithsxurybd7uh.onion|53011|53012",
+    "testnet.hsmiths.com|53011|53012",
+    "tn.not.fyi|55001|55002",
+    "electrum.blockstream.info|60001|60002",
+    "explorerzydxu5ecjrkwceayqybizmpjjznk5izmitf2modhcusuqlid.onion|143|"
+  ],
+  "BCH": [
+    "bch.crypto.mldlabs.com|50001|50002",
+    "bch.imaginary.cash|50001|50002",
+    "bch0.kister.net|50001|50002",
+    "bch.loping.net|50001|50002",
+    "j2tjfxntnsqpojaamnndgmfrc6lh3thattnlpc2xx53h2ojoi7agccid.onion|50001|50002",
+    "bch.soul-dev.com||50002",
+    "bchisbitcoin.com|50001|50002",
+    "blackie.c3-soft.com|50001|50002",
+    "electron.jochen-hoenicke.de|51001|51002",
+    "electroncash.dk|50001|50002",
+    "bch2.electroncash.dk|50001|50002",
+    "electrum.imaginary.cash|50001|50002",
+    "7nshufncf3nmp7pa42oqhnj6whsjgo2eok4jveex62tczuhvqur5ciad.onion|50001|",
+    "kisternetg2pq7wx.onion|50001|",
+    "electroncash.de|50001|50002",
+    "electrs.electroncash.de||40002",
+    "fulcrum.fountainhead.cash|50001|50002",
+    "electrs.bitcoinunlimited.info||50002",
+    "bch.cyberbits.eu||50002",
+    "bitcoincash.network||50002",
+    "electrumx-bch.cryptonermal.net|50001|50002"
+  ],
+  "tBCH": [
+    "bch0.kister.net||51002",
+    "blackie.c3-soft.com||60002",
+    "testnet.bitcoincash.network||60002",
+    "electroncash.de|50003|50004",
+    "electrs.electroncash.de||60002",
+    "tbch.loping.net|60001|60002",
+    "jktsologn7uprtwn7gsgmwuddj6rxsqmwc2vaug7jwcwzm2bxqnfpwad.onion|50003|50004",
+    "scgjgc67226l65u52wyvulioxixv34p5dth73oj35ej7ham2zavdtxid.onion|60001|60002"
+  ],
+  "LTC": [
+    "electrum-ltc.bysh.me|50001|50002",
+    "electrum.ltc.xurious.com|50001|50002"
+  ],
+  "tLTC": [
+    "electrum-ltc.bysh.me|51001|51002",
+    "electrum.ltc.xurious.com|51001|51002"
+  ],
+  "DASH": [
+    "electrumx-mainnet.dash.org||50002",
+    "drk.p2pay.com||50002"
+  ],
+  "tDASH": [
+    "electrumx-testnet.dash.org||50002"
+  ]
+}

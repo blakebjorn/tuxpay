@@ -1,0 +1,13 @@
+[Unit]
+Description=TuxPay Server
+After=network.target
+
+[Service]
+User=www-data
+Group=www-data
+WorkingDirectory=/home/{{ PROJECT ROOT }}
+Environment="PATH=/home/{{ PATH TO PYTHON VENV/BIN DIR }}"
+ExecStart=/home/{{ PATH TO PYTHON/VENV BIN DIR }}/python3 server.py
+
+[Install]
+WantedBy=multi-user.target

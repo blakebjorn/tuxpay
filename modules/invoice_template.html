@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>{{ invoice_name }}</title>
+    <style>
+        .invoice {
+            border: 1px solid black;
+            position: fixed;
+            left: 0.75in;
+            right: 0.75in;
+            top: 0.75in;
+            height: 12.25in;
+            padding: 0.1in;
+        }
+
+        .flex-row {
+            display: flex;
+            flex-direction: row;
+        }
+
+        .flex-item {
+            flex-grow: 1;
+        }
+    </style>
+</head>
+<body>
+
+<div class="invoice">
+    <h4>Invoice: {{ invoice_name }}</h4>
+    <hr>
+
+    <div class="flex-row">
+        <div class="flex-item">
+            {% if invoice_customer_name %}
+            <div><strong>Name</strong></div>
+            {% endif %}
+            {% if invoice_customer_email %}
+            <div><strong>Email</strong></div>
+            {% endif %}
+        </div>
+        <div class="flex-item">
+            {% if invoice_customer_name %}
+            <div>{{ invoice_customer_name }}</div>
+            {% endif %}
+            {% if invoice_customer_email %}
+            <div>{{ invoice_customer_email }}</div>
+            {% endif %}
+        </div>
+        <div class="flex-item">
+            <div><strong>Amount</strong></div>
+            <div><strong>Invoice Date</strong></div>
+            {% if invoice_expiry_date %}
+            <div><strong>Due</strong></div>
+            {% endif %}
+        </div>
+        <div class="flex-item">
+            <div>${{ invoice_amount_cents / 100 }} {{ invoice_currency }}</div>
+            <div>{{ invoice_creation_date }}</div>
+            {% if invoice_expiry_date %}
+            <div>{{ invoice_expiry_date }}</div>
+            {% endif %}
+        </div>
+    </div>
+    <hr>
+
+    {% if payment_status %}
+    <div class="flex-row">
+        <div class="flex-item">
+            <div><strong>Payment Status</strong></div>
+            <div><strong>Payment Date</strong></div>
+            <div><strong>Invoiced</strong></div>
+            <div><strong>Paid</strong></div>
+            <div><strong>Address</strong></div>
+        </div>
+        <div style="flex-grow: 3">
+            <div>{{ invoice_status }}</div>
+            <div>{{ payment_payment_date }}</div>
+            <div>{{ payment_amount_coin }} {{ payment_symbol }}</div>
+            <div>{{ payment_paid_amount_coin }} {{ payment_symbol }}</div>
+            <div>{{ payment_address }}</div>
+        </div>
+    </div>
+    <hr>
+    {% endif %}
+
+    {% if invoice_notes_html %}
+    <div>{{ invoice_notes_html | safe }}</div>
+    <hr>
+    {% endif %}
+
+    {% if invoice_contents_html %}
+    <div>{{ invoice_contents_html | safe }}</div>
+    {% endif %}
+</div>
+</body>
+</html>
