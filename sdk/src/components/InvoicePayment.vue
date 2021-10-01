@@ -112,7 +112,8 @@ export default {
         this.websocket.socket.close()
       }
 
-      let ws = new WebSocket("ws://" + location.host + "/api/payment");
+      let ws = new WebSocket((location.protocol === "https:" ? "wss://" : "ws://")
+          + location.host + "/api/payment");
       ws.onopen = () => {
         this.websocket.open = true
         ws.send(JSON.stringify({uuid: this.payment.uuid}))
