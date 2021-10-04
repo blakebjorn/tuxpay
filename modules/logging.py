@@ -2,7 +2,7 @@ import logging
 from logging.handlers import TimedRotatingFileHandler
 from pathlib import Path
 
-logger = logging.getLogger('tuxpay')
+logger = logging.getLogger()
 logger.setLevel(logging.DEBUG)
 
 log_file = (Path(__file__).parent / "..").resolve() / "data" / "tuxpay.log"

@@ -21,7 +21,7 @@ async def email_invoice(invoice):
 
     e = Email(to=recipients,
               bcc=recipients,
-              subject=f"TuxPay Payment for Invocie {invoice['name']}",
+              subject=f"TuxPay Payment for Invoice {invoice['name']}",
               content=f"<div>Payment has been confirmed. Invoice is attached</div>",
               attachments=[(pdf_file.read_bytes(), f"Invoice {invoice['name']}.pdf")])
     try:

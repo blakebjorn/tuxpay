@@ -51,4 +51,7 @@ async def get_coins():
     """
     Returns an array of data pertaining to all the payment types supported by the server
     """
-    return JSONResponse({"coins": await get_coins_raw(), "currencies": await exchangeRates.currencies})
+    return JSONResponse({
+        "coins": await get_coins_raw(),
+        "currencies": await exchangeRates.currencies
+    })

@@ -1,13 +1,14 @@
 import datetime
 import json
+from json import JSONDecodeError
 from pathlib import Path
 from typing import Dict
 
-import requests
+import aiohttp
 
 from modules import config
 from modules.coins import ALL_COINS
-from modules.helpers import age_hours, run_async
+from modules.helpers import age_hours
 from modules.logging import logger
 
 
@@ -35,16 +36,23 @@ class ExchangeRates:
 
         pairs = ",".join({x.kraken for x in ALL_COINS.values()})
 
-        resp = await run_async(requests.get, f'https://api.kraken.com/0/public/Ticker', params={"pair": pairs})
-        if resp.status_code != 200:
-            logger.error(f"could not update coin values: {resp.text}")
-            return self._pairs
+        async with aiohttp.ClientSession() as session:
+            async with session.get('https://api.kraken.com/0/public/Ticker', params={"pair": pairs}) as response:
+                if response.status != 200:
+                    logger.error(f"could not update coin values: {response.text} - returning cached prices")
+                    return self._pairs
 
-        for pair, data in resp.json()['result'].items():
-            self._pairs[pair] = (float(data['a'][0]) + float(data['b'][0])) / 2
-        self._pairs['timestamp'] = datetime.datetime.now().timestamp()
-        self.coins_file.write_text(json.dumps(self._pairs))
-        return {k: v for k, v in self._pairs.items() if k != 'timestamp'}
+                try:
+                    resp_data = await response.json()
+                except JSONDecodeError:
+                    logger.error(f"could not decode kraken response: {response.text} - returning cached rates")
+                    return self._pairs
+
+                for pair, data in resp_data['result'].items():
+                    self._pairs[pair] = (float(data['a'][0]) + float(data['b'][0])) / 2
+                self._pairs['timestamp'] = datetime.datetime.now().timestamp()
+                self.coins_file.write_text(json.dumps(self._pairs))
+                return {k: v for k, v in self._pairs.items() if k != 'timestamp'}
 
     @property
     async def fixer_io_rates(self):
@@ -57,15 +65,22 @@ class ExchangeRates:
         logger.info("updating FOREX rates")
         symbols = "AUD,CAD,USD,GBP,JPY,EUR,RUB"
 
-        resp = await run_async(requests.get,
-                               f'http://data.fixer.io/api/latest?access_key={self.fixer_api_key}'
-                               f'&base=EUR&symbols={symbols}')
+        async with aiohttp.ClientSession() as session:
+            async with session.get('http://data.fixer.io/api/latest',
+                                   params={"access_key": self.fixer_api_key,
+                                           "base": "EUR",
+                                           "symbols": symbols}) as response:
+                try:
+                    resp_data = await response.json()
+                except JSONDecodeError:
+                    logger.error(f"could not decode forex response: {response.text} - returning cached rates")
+                    return rates
 
-        if resp.status_code != 200 or "error" in resp.json():
-            logger.error(f"could not update forex rates: {resp.text}")
-            return rates
+                if response.status != 200 or "error" in resp_data:
+                    logger.error(f"could not update forex rates: {response.text} - returning cached rates")
+                    return rates
 
-        rates = resp.json()['rates']
+        rates = resp_data['rates']
         usd = float(rates['USD'])
         for x in rates.keys():
             rates[x] /= usd

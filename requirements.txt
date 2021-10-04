@@ -1,7 +1,6 @@
 databases[sqlite]==0.4.3
 fastapi==0.65.2
 python-dotenv==0.18.0
-requests==2.25.1
 PyInquirer==1.0.3
 mnemonic==0.19
 mkdocs==1.2.2
@@ -20,5 +19,9 @@ aiofiles==0.7.0
 Jinja2==3.0.1
 pdfkit==0.6.1
 bleach==3.3.0
-modules/electrum_mods/electrum-4.1.2.tar.gz
 modules/electrum_mods/Electron-Cash-4.2.4.tar.gz
+
+Electrum==4.1.2
+pydantic==1.8.2
+starlette==0.14.2
+aiohttp==3.7.4.post0

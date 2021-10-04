@@ -9,6 +9,7 @@ from modules.models import database, create_db, Payment
 from modules.task_scheduler import instantiate_task_scheduler
 
 app = make_application()
+task_scheduler = instantiate_task_scheduler()
 
 
 @app.on_event("startup")
@@ -19,7 +20,6 @@ async def startup():
     for network in ALL_COINS.values():
         asyncio.create_task(network.electrumX.update_peers())
 
-    task_scheduler = await instantiate_task_scheduler()
     task_scheduler.start()
     for payment in await database.fetch_all(Payment.select().where(Payment.c.status.in_(['pending', 'paid']))):
         asyncio.create_task(ALL_COINS[payment['symbol']].watch_payment(payment=dict(payment)))
@@ -27,6 +27,7 @@ async def startup():
 
 @app.on_event("shutdown")
 async def shutdown():
+    await task_scheduler.shutdown()
     await database.disconnect()
 
 

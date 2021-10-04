@@ -78,7 +78,7 @@ async def sweep_wallet(symbol, address, max_fee_rate, max_fee_prop, decryption_p
     await network.electrum_call(ElectrumX.blockchain_transaction_broadcast, [raw_tx])
 
 
-async def instantiate_task_scheduler():
+def instantiate_task_scheduler():
     scheduler = AsyncIOScheduler()
 
     # Add sweep jobs
