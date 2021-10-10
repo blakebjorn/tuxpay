@@ -2,6 +2,7 @@ import asyncio
 import hashlib
 import json
 import pathlib
+from functools import partial
 from pathlib import Path
 from typing import Optional
 
@@ -10,6 +11,7 @@ import pdfkit
 from jinja2.environment import Environment
 from sqlalchemy import and_, or_, select
 
+from modules import config
 from modules.coins import ALL_COINS
 from modules.models import Payment, Invoice, database
 
@@ -21,6 +23,8 @@ output_dir = pathlib.Path("data/invoices")
 output_dir.mkdir(parents=True, exist_ok=True)
 
 bleach.ALLOWED_TAGS += ['p']
+
+pdfkit_config = pdfkit.configuration(wkhtmltopdf=bytes(config.get("wkhtmltopdf_path", "/usr/bin/wkhtmltopdf"), 'utf-8'))
 
 
 async def get_invoice_pdf_data(invoice_id: int) -> Optional[dict]:
@@ -73,6 +77,9 @@ async def build_invoice_pdf(fields: dict) -> Path:
 
     content = invoice_template.render(**fields)
     loop = asyncio.get_event_loop()
-    await loop.run_in_executor(None, pdfkit.from_string, content, out_file, {'page-height': '11in',
-                                                                             'page-width': '8.5in'})
+    await loop.run_in_executor(None, partial(pdfkit.from_string,
+                                             content,
+                                             out_file,
+                                             options={'page-height': '11in', 'page-width': '8.5in'},
+                                             configuration=pdfkit_config))
     return out_file
