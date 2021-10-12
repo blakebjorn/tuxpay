@@ -2,22 +2,26 @@ import logging
 from logging.handlers import TimedRotatingFileHandler
 from pathlib import Path
 
-logger = logging.getLogger()
-logger.setLevel(logging.DEBUG)
 
-log_file = (Path(__file__).parent / "..").resolve() / "data" / "tuxpay.log"
+def create_logger():
+    logger_ = logging.getLogger(None)
+    logger_.setLevel(logging.DEBUG)
 
-# File handler
-fh = TimedRotatingFileHandler(log_file, when='W6')
-fh.setLevel(logging.DEBUG)
+    log_file = (Path(__file__).parent / "..").resolve() / "data" / "tuxpay.log"
+    formatter = logging.Formatter('%(asctime)s - %(name)s - %(levelname)s - %(message)s')
 
-# Stdout
-sh = logging.StreamHandler()
-sh.setLevel(logging.INFO)
+    # File handler
+    fh = TimedRotatingFileHandler(log_file, when='W6')
+    fh.setLevel(logging.DEBUG)
+    fh.setFormatter(formatter)
+    logger_.addHandler(fh)
 
-formatter = logging.Formatter('%(asctime)s - %(name)s - %(levelname)s - %(message)s')
-fh.setFormatter(formatter)
-sh.setFormatter(formatter)
+    # Stdout
+    sh = logging.StreamHandler()
+    sh.setLevel(logging.INFO)
+    sh.setFormatter(formatter)
+    logger_.addHandler(sh)
+    return logger_
 
-logger.addHandler(fh)
-logger.addHandler(sh)
+
+logger = create_logger()

@@ -221,7 +221,14 @@ class CoinNetwork(constants.AbstractNet):
             req_confirmations = int(self.config('required_confirmations', default=6))
             for tx in valid_tx:
                 for vout in tx['vout']:
-                    for addr in vout['scriptPubKey']['addresses']:
+                    if "addresses" in vout['scriptPubKey']:
+                        addresses = vout['scriptPubKey']['addresses']
+                    elif "address" in vout['scriptPubKey']:
+                        addresses = [vout['scriptPubKey']['address']]
+                    else:
+                        raise ElectrumError("No Addresses in vout")
+
+                    for addr in addresses:
                         if addr == payment['address']:
                             sats = int(round(vout['value'] * 10 ** self.decimals))
                             mempool_sats += sats
