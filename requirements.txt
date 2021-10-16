@@ -3,7 +3,6 @@ fastapi==0.65.2
 python-dotenv==0.18.0
 PyInquirer==1.0.3
 mnemonic==0.19
-mkdocs==1.2.2
 qrcode[pil]==7.0
 uvicorn[standard]==0.14.0
 apscheduler==3.7.0
@@ -19,9 +18,12 @@ aiofiles==0.7.0
 Jinja2==3.0.1
 pdfkit==0.6.1
 bleach==3.3.0
-modules/electrum_mods/Electron-Cash-4.2.4.tar.gz
-
-Electrum==4.1.2
 pydantic==1.8.2
 starlette==0.14.2
 aiohttp==3.7.4.post0
+Electrum==4.1.2
+
+mkdocs==1.2.2
+mkdocs-material==7.3.3
+
+modules/electrum_mods/Electron-Cash-4.2.4.tar.gz

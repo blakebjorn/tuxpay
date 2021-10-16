@@ -1,1 +1,8 @@
 site_name: TuxPay
+repo_url: https://github.com/blakebjorn/tuxpay
+theme:
+  logo: assets/logo.png
+  name: material
+  palette:
+    primary: teal
+    accent: indigo
